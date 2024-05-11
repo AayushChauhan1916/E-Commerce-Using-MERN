@@ -1,14 +1,11 @@
 export function createUser(userData) {
   return new Promise(async (resolve, reject) => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/auth/signup",
-      {
-        method: "POST",
-        body: JSON.stringify(userData),
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify(userData),
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    });
     const data = await response.json();
     if (data.success == true) {
       // console.log("suucess")
@@ -24,15 +21,12 @@ export function createUser(userData) {
 export function loginUser(userData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(
-        "https://e-commerce-mern-backend-six.vercel.app/api/auth/login",
-        {
-          method: "POST",
-          body: JSON.stringify(userData),
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(userData),
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
       const data = await response.json();
       if (data.success == true) {
         resolve(data.user);
@@ -48,15 +42,12 @@ export function loginUser(userData) {
 
 export function addaddress(userId, userAddress) {
   return new Promise(async (resolve, reject) => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/user/addaddress",
-      {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(userId, userAddress),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch("/api/user/addaddress", {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(userId, userAddress),
+      headers: { "Content-Type": "application/json" },
+    });
     const data = await response.json();
     if (data.success == true) {
       resolve(data.user);

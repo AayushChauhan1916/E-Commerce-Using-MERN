@@ -1,8 +1,6 @@
 export function fetchproduct() {
   return new Promise(async (resolve) => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/fetchproduct"
-    );
+    const response = await fetch("/api/fetchproduct");
     const data = response.json();
     resolve({ data });
   });

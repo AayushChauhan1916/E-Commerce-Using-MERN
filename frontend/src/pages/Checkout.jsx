@@ -132,7 +132,7 @@ const Checkout = () => {
               currentOrder: razorPayCurrentOrder,
             };
             const validateResponse = await fetch(
-              "https://e-commerce-mern-backend-six.vercel.app/api/order/orderpayment/validate",
+              "/api/order/orderpayment/validate",
               {
                 method: "POST",
                 body: JSON.stringify(body),

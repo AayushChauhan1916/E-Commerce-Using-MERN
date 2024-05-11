@@ -30,14 +30,11 @@ const Navbar = () => {
   }, 0);
 
   const handleLogout = async () => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/auth/logout",
-      {
-        method: "GET",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch("/api/auth/logout", {
+      method: "GET",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    });
     const data = await response.json();
     // console.log(data);
     if (data.success == true) {

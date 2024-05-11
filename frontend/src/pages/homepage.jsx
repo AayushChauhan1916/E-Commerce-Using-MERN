@@ -13,9 +13,7 @@ const Homepage = () => {
   const user = useSelector(selectLoginInUserDetail);
 
   const fetchNewProduct = async () => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/newproduct"
-    );
+    const response = await fetch("/api/newproduct");
     const data = await response.json();
     if (data.success) {
       setNewProduct(data.newProducts);
@@ -26,9 +24,7 @@ const Homepage = () => {
   };
 
   const fetchPopularProduct = async () => {
-    const response = await fetch(
-      "https://e-commerce-mern-backend-six.vercel.app/api/popular"
-    );
+    const response = await fetch("/api/popular");
     const data = await response.json();
     if (data.success) {
       setPopular(data.mostSelling);
