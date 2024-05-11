@@ -1,0 +1,5 @@
+.spinner-grow {
+  width: 5rem;
+  height: 5rem; /* Adjust size as needed */
+  font-size: 3rem; /* Increase font size for the loading symbol */
+}
