@@ -18,13 +18,13 @@ const orderRouter = require("./routes/order.js");
 const adminRouter = require("./routes/admin.js");
 const adminOrder = require("./routes/AdminOrder.js");
 const isLoggedIn = require("./utils/isLoggedIn.js");
-// const path = require("path");
+const path = require("path");
 const MongoStore = require("connect-mongo");
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 app.use(express.json());
-// app.use(express.static(path.resolve(__dirname, "dist")));
+app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   "http://localhost:5173",
