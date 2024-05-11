@@ -120,13 +120,13 @@ const SignUp = () => {
                   id="password"
                   {...register("password", {
                     required: "password required",
-                    // pattern: {
-                    //   value:
-                    //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-                    //   message: `- at least 8 characters\n
-                    // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
-                    // - Can contain special characters\n`,
-                    // },
+                    pattern: {
+                      value:
+                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                      message: `- at least 8 characters\n
+                    - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
+                    - Can contain special characters\n`,
+                    },
                   })}
                   type="password"
                   autoComplete="current-password"
