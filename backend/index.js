@@ -25,6 +25,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
+app.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
 app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = ["http://localhost:5173"];
 
