@@ -163,8 +163,8 @@ app.get(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.use((err, req, res, next) => {
