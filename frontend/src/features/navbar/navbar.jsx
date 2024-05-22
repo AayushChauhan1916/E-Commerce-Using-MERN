@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCart1 } from "../cart/cartSlice";
 import { selectCustomer } from "../customer/custSlice";
+import { toast } from "react-toastify";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -160,7 +161,7 @@ const Navbar = () => {
                                     onClick={handleLogout}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      "block px-4 py-2 text-sm text-gray-700 cursor-pointer"
                                     )}
                                   >
                                     Logout
@@ -283,7 +284,7 @@ const Navbar = () => {
                       </Link>
                       <div
                         onClick={handleLogout}
-                        className="block px-3 py-2 text-base rounded-md text-gray-300 hover:text-white hover:bg-gray-700"
+                        className="block px-3 py-2 text-base rounded-md text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer"
                       >
                         Logout
                       </div>
