@@ -24,10 +24,11 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "dist")));
-app.use('/assets', express.static(path.resolve(__dirname, 'dist/assets')));
+app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(express.urlencoded({ extended: true }));
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = [
+  "http://localhost:5173",
+];
 
 const sessionOptions = {
   store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
@@ -164,8 +165,8 @@ app.get(
   })
 );
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 app.use((err, req, res, next) => {
