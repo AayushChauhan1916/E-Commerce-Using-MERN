@@ -29,13 +29,13 @@ Check out the live demo: https://e-commerce-by-aayush-chauhan.vercel.app/
 1) User Registration and Login:
 Create a new account or log in with your existing credentials.
 
-2)Browse Products:
+2) Browse Products:
 Explore various products available on the platform.
 
-3)Add to Cart:
+3) Add to Cart:
 Add your desired products to the shopping cart.
 
-4)Checkout and Payment:
+4) Checkout and Payment:
 Proceed to checkout and make payments securely using Razorpay.
 
 # Admin Panel
@@ -69,7 +69,7 @@ If you have any questions or feedback, feel free to reach out:
 
 Email: aayushchauhan1916@gmail.com
 
-GitHub: AayushChauhan1916
+GitHub: https://github.com/AayushChauhan1916
 
 LinkedIn: https://www.linkedin.com/in/aayush-chauhan1916/
 
