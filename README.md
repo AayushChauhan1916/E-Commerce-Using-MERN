@@ -52,16 +52,23 @@ View and manage user accounts
 # Tech Stack
 
 # Frontend:
+
 React.js
+
 Redux
+
 CSS/Bootstrap/Tailwind
 
 # Backend:
+
 Node.js
+
 Express.js
+
 MongoDB
 
 # Payment Gateway:
+
 Razorpay
 
 # Contact
