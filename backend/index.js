@@ -165,9 +165,9 @@ app.get(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
 app.use((err, req, res, next) => {
   res.status(500).json({

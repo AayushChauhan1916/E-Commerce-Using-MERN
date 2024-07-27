@@ -6,14 +6,74 @@
             "use":"@vercel/node"
         },
         {
-            "src":"build/**",
+            "src":"dist/**",
             "use":"@vercel/static"
         }
     ],
     "routes":[
         {
-            "src":"/(.*)",
-            "dest":"/"
+            "src":"/api/auth",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/auth/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/cart",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/cart/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/user",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/user/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/order",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/order/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/fetchproduct",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/fetchproduct/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/newproduct",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/fetchproduct/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/popular",
+            "dest":"index.js"
+        },
+        {
+            "src":"/api/api/popular/(.*)",
+            "dest":"index.js"
+        },
+        {
+            "src":"/",
+            "dest":"dist/index.html"
+        },
+        {
+            "src":"/(.+)",
+            "dest":"dist/$1"
         }
 
     ]
