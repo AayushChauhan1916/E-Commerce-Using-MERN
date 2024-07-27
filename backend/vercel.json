@@ -1,80 +1,28 @@
 {
-    "version":2,
-    "builds":[
-        {
-            "src":"index.js",
-            "use":"@vercel/node"
-        },
-        {
-            "src":"dist/**",
-            "use":"@vercel/static"
-        }
+    "version": 2,
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "dist/**",
+        "use": "@vercel/static"
+      }
     ],
-    "routes":[
-        {
-            "src":"/api/auth",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/auth/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/cart",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/cart/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/user",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/user/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/order",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/order/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/fetchproduct",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/fetchproduct/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/newproduct",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/fetchproduct/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/popular",
-            "dest":"index.js"
-        },
-        {
-            "src":"/api/api/popular/(.*)",
-            "dest":"index.js"
-        },
-        {
-            "src":"/",
-            "dest":"dist/index.html"
-        },
-        {
-            "src":"/(.+)",
-            "dest":"dist/$1"
-        }
-
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "index.js"
+      },
+      {
+        "src": "/",
+        "dest": "dist/index.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "dist/$1"
+      }
     ]
-}
+  }
+  
