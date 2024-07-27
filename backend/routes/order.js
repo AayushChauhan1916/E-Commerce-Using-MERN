@@ -10,7 +10,6 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-
 router.post(
   "/addorder",
   wrapAsync(async (req, res) => {
@@ -124,7 +123,13 @@ router.post(
     sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
     const digest = sha.digest("hex");
     if (digest !== razorpay_signature) {
-      res.status(400).json({ success:false ,message:"Something went Wrong Order did not placed amount will refunded within 2-3 working days " });
+      res
+        .status(400)
+        .json({
+          success: false,
+          message:
+            "Something went Wrong Order did not placed amount will refunded within 2-3 working days ",
+        });
     } else {
       for (const item of req.body.currentOrder.product) {
         // Extract product ID and quantity
@@ -169,7 +174,9 @@ router.post(
       await user.save();
 
       // Clear user's cart
-      await User.findByIdAndUpdate(req.body.currentOrder.user, { $set: { cart: [] } });
+      await User.findByIdAndUpdate(req.body.currentOrder.user, {
+        $set: { cart: [] },
+      });
       res.status(200).json({
         success: true,
         order_Id: razorpay_order_id,
