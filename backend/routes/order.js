@@ -128,7 +128,7 @@ router.post(
         .json({
           success: false,
           message:
-            "Something went Wrong Order did not placed amount will refunded within 2-3 working days ",
+            "Order did not placed amount will automatically refunded within 2-3 working days,Try Again ",
         });
     } else {
       for (const item of req.body.currentOrder.product) {
