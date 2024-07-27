@@ -16,12 +16,16 @@
         "dest": "index.js"
       },
       {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
         "src": "/",
-        "dest": "dist/index.html"
+        "dest": "/dist/index.html"
       },
       {
         "src": "/(.*)",
-        "dest": "dist/$1"
+        "dest": "/dist/index.html"
       }
     ]
   }

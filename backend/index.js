@@ -112,12 +112,12 @@ app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin", adminOrder);
 
-app.get(
-  "/",
-  wrapAsync((req, res) => {
-    res.send("krishna");
-  })
-);
+// app.get(
+//   "/",
+//   wrapAsync((req, res) => {
+//     res.send("krishna");
+//   })
+// );
 // fetch Products
 app.get(
   "/api/fetchproduct",
