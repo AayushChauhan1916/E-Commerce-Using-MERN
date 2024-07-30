@@ -26,9 +26,7 @@ if (process.env.NODE_ENV !== "production") {
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(express.urlencoded({ extended: true }));
-const allowedOrigins = [
-  "http://localhost:5173",
-];
+const allowedOrigins = ["http://localhost:5173"];
 
 const sessionOptions = {
   store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
@@ -112,13 +110,7 @@ app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin", adminOrder);
 
-// app.get(
-//   "/",
-//   wrapAsync((req, res) => {
-//     res.send("krishna");
-//   })
-// );
-// fetch Products
+
 app.get(
   "/api/fetchproduct",
   wrapAsync(async (req, res) => {
@@ -165,11 +157,10 @@ app.get(
   })
 );
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
-
 app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
   res.status(500).json({
     message: err.message,
     success: false,

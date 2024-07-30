@@ -41,23 +41,24 @@ const Homepage = () => {
 
   useEffect(() => {
     if (user) {
-      toast.success("Logged in Successfully");
+      toast.success(`Welcome Back,${user.name}`);
     }
   }, [user]);
 
   return (
     <>
       <Maincarousel />
-      {newProductBoolean && (
-        <HomeSectionCarousel data={newProduct} section={"New Arrivals"} />
-      )}
-      {popularBoolean && (
-        <HomeSectionCarousel data={popular} section={"Most Selling's"} />
-      )}
+      <HomeSectionCarousel
+        data={newProduct}
+        section={"New Arrivals"}
+        isLoading={!newProductBoolean}
+      />
 
-      {/*       
-      <HomeSectionCarousel data={gounsPage1} section={"Gouns"} />
-      <HomeSectionCarousel data={saree} section={"Sarees"} />  */}
+      <HomeSectionCarousel
+        data={popular}
+        section={"Most Selling's"}
+        isLoading={!popularBoolean}
+      />
     </>
   );
 };

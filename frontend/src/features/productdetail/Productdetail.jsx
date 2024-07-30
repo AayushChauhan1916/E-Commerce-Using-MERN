@@ -4,6 +4,7 @@ import { addToCartAsync, selectCartStatus } from "../cart/cartSlice";
 import { selectCustomer } from "../customer/custSlice";
 import { isProduct} from "../product-list/productslice";
 import { toast } from "react-toastify";
+import Spinner from "../spinner/Spinner";
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -14,7 +15,6 @@ function classNames(...classes) {
 export default function Productdetail(props) {
   const product = props.product[0];
   const dispatch = useDispatch();
-  // const status = useSelector(selectCartStatus);
   const isproduct = useSelector(isProduct);
   const user = useSelector(selectCustomer);
   const handleSubmit = (e) => {
@@ -23,7 +23,6 @@ export default function Productdetail(props) {
       toast.success("🛒 Item Added ",{
         position:"bottom-left"
       })
-      // console.log("aayush");
       dispatch(
         addToCartAsync({ productId: product._id, quantity: 1, user: user._id })
       );
@@ -34,19 +33,9 @@ export default function Productdetail(props) {
     }
   };
 
- 
-
-  // useEffect(() => {
-  //   if (status.state === 'loading') {
-  //     toast.info(status.message);
-  //   } else if (status.state === 'success') {
-  //     toast.success(status.message);
-  //   }
-  // }, []);
-
   return (
     <>
-      {isproduct && (
+      {isproduct ? (
         <div className="bg-white">
           <div className="pt-6">
             {/* <nav aria-label="Breadcrumb">
@@ -315,7 +304,7 @@ export default function Productdetail(props) {
             </div>
           </div>
         </div>
-      )}
+      ):<div style={{ minHeight: '100vh' }} className="flex justify-center items-center"><Spinner/></div>}
     </>
   );
 }

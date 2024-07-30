@@ -1,0 +1,25 @@
+@keyframes shimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+  
+  .shimmer {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    opacity: 0.6; /* Reduced opacity for a more subtle effect */
+  }
+  
+  
+  .bg-gray-300 {
+    background-color: #e0e0e0; /* Light gray background color for the card */
+  }
+  
+  .bg-gray-400 {
+    background-color: #c0c0c0; /* Slightly darker gray for text placeholders */
+  }
+  

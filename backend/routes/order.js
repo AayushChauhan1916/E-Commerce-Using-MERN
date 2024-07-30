@@ -151,7 +151,7 @@ router.post(
           return res.status(500).json({
             success: false,
             message:
-              "Product Quantity is greater than the stock availalbe, Sorry Can't place your order",
+              "Product Quantity is greater than the stock availalbe, Sorry Can't place your order deducted amount refunded Automatically",
           });
         }
 
