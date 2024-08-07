@@ -10,12 +10,12 @@ const Recommendation = ({ productCategory }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8080/api/fetch/recommendation",
+        "/api/fetch/recommendation",
         {
           method: "POST",
           credentials: "include",
           body: JSON.stringify({ productCategory }),
-          headers: { "Content-Type": "application/json" },
+          headers: {"Content-Type": "application/json"},
         }
       );
 
