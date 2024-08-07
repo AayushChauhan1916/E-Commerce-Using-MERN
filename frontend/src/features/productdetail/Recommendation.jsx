@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
 
-const Recommendation = ({ productCategory }) => {
+const Recommendation = ({ productCategory,triggerRender }) => {
   const [isLoading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -32,7 +32,7 @@ const Recommendation = ({ productCategory }) => {
 
   useEffect(() => {
     getRecommendation();
-  }, []);
+  }, [triggerRender]);
 
   return (
     <>

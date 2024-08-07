@@ -285,7 +285,7 @@ export default function Productdetail(props) {
           </div>
           <div className="max-w-7xl mx-auto pb-20">
           <h1 className="font-bold text-center text-3xl mb-5  text-[#508C9B]"> Recommended</h1>
-            <Recommendation productCategory={product.category}/>
+            <Recommendation productCategory={product.category} triggerRender={product.name}/>
           </div>
         </div>
       ) : (
