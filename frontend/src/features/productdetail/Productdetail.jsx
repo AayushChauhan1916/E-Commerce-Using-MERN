@@ -2,9 +2,10 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAsync, selectCartStatus } from "../cart/cartSlice";
 import { selectCustomer } from "../customer/custSlice";
-import { isProduct} from "../product-list/productslice";
+import { isProduct } from "../product-list/productslice";
 import { toast } from "react-toastify";
 import Spinner from "../spinner/Spinner";
+import Recommendation from "./Recommendation";
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -15,14 +16,15 @@ function classNames(...classes) {
 export default function Productdetail(props) {
   const product = props.product[0];
   const dispatch = useDispatch();
+  // const status = useSelector(selectCartStatus);
   const isproduct = useSelector(isProduct);
   const user = useSelector(selectCustomer);
   const handleSubmit = (e) => {
     if (user) {
       e.preventDefault();
-      toast.success("🛒 Item Added ",{
-        position:"bottom-left"
-      })
+      toast.success("🛒 Item Added ", {
+        position: "bottom-left",
+      });
       dispatch(
         addToCartAsync({ productId: product._id, quantity: 1, user: user._id })
       );
@@ -33,40 +35,19 @@ export default function Productdetail(props) {
     }
   };
 
+  // useEffect(() => {
+  //   if (status.state === 'loading') {
+  //     toast.info(status.message);
+  //   } else if (status.state === 'success') {
+  //     toast.success(status.message);
+  //   }
+  // }, []);
+
   return (
     <>
       {isproduct ? (
         <div className="bg-white">
           <div className="pt-6">
-            {/* <nav aria-label="Breadcrumb">
-        <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-          {product.breadcrumbs.map((breadcrumb) => (
-            <li key={breadcrumb.id}>
-              <div className="flex items-center">
-                <a href={breadcrumb.href} className="mr-2 text-sm font-medium text-gray-900">
-                  {breadcrumb.name}
-                </a>
-                <svg
-                  width={16}
-                  height={20}
-                  viewBox="0 0 16 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-5 w-4 text-gray-300"
-                >
-                  <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                </svg>
-              </div>
-            </li>
-          ))}
-          <li className="text-sm">
-            <a aria-current="page" className="font-medium text-gray-500 hover:text-gray-600">
-              {product.name}
-            </a>
-          </li>
-        </ol>
-      </nav> */}
-
             {/* Image gallery */}
             <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
               <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -102,7 +83,7 @@ export default function Productdetail(props) {
             </div>
 
             {/* Product info */}
-            <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+            <div className="mx-auto max-w-2xl px-4 pb-1 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-10 lg:pt-16">
               <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                   {product.name}
@@ -248,7 +229,6 @@ export default function Productdetail(props) {
                     <button
                       type="submit"
                       onClick={handleSubmit}
-                  
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Add to cart
@@ -303,8 +283,19 @@ export default function Productdetail(props) {
               </div>
             </div>
           </div>
+          <div className="max-w-7xl mx-auto pb-20">
+          <h1 className="font-bold text-center text-3xl mb-5  text-[#508C9B]"> Recommended</h1>
+            <Recommendation productCategory={product.category}/>
+          </div>
         </div>
-      ):<div style={{ minHeight: '100vh' }} className="flex justify-center items-center"><Spinner/></div>}
+      ) : (
+        <div
+          style={{ minHeight: "100vh" }}
+          className="flex justify-center items-center"
+        >
+          <Spinner />
+        </div>
+      )}
     </>
   );
 }

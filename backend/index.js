@@ -110,7 +110,6 @@ app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin", adminOrder);
 
-
 app.get(
   "/api/fetchproduct",
   wrapAsync(async (req, res) => {
@@ -154,6 +153,23 @@ app.get(
         mostSelling: mostSelling,
       });
     }
+  })
+);
+
+app.post(
+  "/api/fetch/recommendation",
+  wrapAsync(async (req, res) => {
+    const { productCategory } = req.body;
+    const product = await Product.find({ category: productCategory }).sort({
+      stock: 1,
+    });
+    const startIdx = Math.floor(Math.random() * 5);
+    const endIdx = Math.floor(Math.random() * product.length - 1);
+    const recommededProduct = product.slice(startIdx, endIdx);
+    res.json({
+      success: true,
+      recommededProduct,
+    });
   })
 );
 

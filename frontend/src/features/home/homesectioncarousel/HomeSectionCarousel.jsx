@@ -5,8 +5,8 @@ import SkeletonLoader from "../../SkeletonLoader/SkeletonLoader"; // Import the 
 const HomeSectionCarousel = ({ data, section, isLoading }) => {
   return (
     <>
-      <div className="px-20 mt-8 mb-10">
-        <h1 className="text-4xl text-cyan-900 text-center underline mb-10 decoration-solid">
+      <div className="px-5 mt-8 mb-10">
+        <h1 className="text-4xl text-[#508C9B] text-center mb-10 decoration-solid">
           {section}
         </h1>
         {isLoading ? (
@@ -18,6 +18,7 @@ const HomeSectionCarousel = ({ data, section, isLoading }) => {
                 key={idx}
                 to={`/productdetails/${product._id}`}
                 className="group"
+                onClick={window.scrollTo(0, 0)}
               >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                   <img
