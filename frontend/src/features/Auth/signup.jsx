@@ -3,15 +3,18 @@ import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   createUserAsync,
+  selectAuthState,
   selectError,
   selectLoginInUserDetail,
 } from "./authslice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-// import { Navigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const Loading = useSelector(selectAuthState);
   const {
     register,
     handleSubmit,
@@ -19,9 +22,7 @@ const SignUp = () => {
   } = useForm();
   const error = useSelector(selectError);
   const user = useSelector(selectLoginInUserDetail);
-  // console.log(error);
 
-  // console.log(errors);
 
   const onSubmit = (data) => {
     dispatch(
@@ -171,12 +172,20 @@ const SignUp = () => {
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign Up
-              </button>
+              <div>
+                {Loading == "loading" ? (
+                  <div className="flex justify-center items-center w-full rounded-md">
+                    <CircularProgress size={20} />
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Sign in
+                  </button>
+                )}
+              </div>
             </div>
           </form>
 

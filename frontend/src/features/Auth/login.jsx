@@ -5,25 +5,29 @@ import {
   selectLoginInUserDetail,
   loginUserAsync,
   selectError,
+  selectAuthState,
 } from "./authslice";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectLoginInUserDetail);
+  const Loading = useSelector(selectAuthState);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+ 
+
   const error = useSelector(selectError);
 
-
   const onSubmit = (data) => {
-    dispatch(loginUserAsync({username:data.email,password:data.password}));
-    // console.log(data);
+    dispatch(loginUserAsync({ username: data.email, password: data.password }));
   };
 
   return (
@@ -103,12 +107,18 @@ const Login = () => {
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
-              </button>
+              {Loading == "loading" ? (
+                <div className="flex justify-center items-center w-full rounded-md">
+                  <CircularProgress size={20} />
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign in
+                </button>
+              )}
             </div>
           </form>
 
