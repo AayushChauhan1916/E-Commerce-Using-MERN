@@ -48,6 +48,7 @@ export const authSlice = createSlice({
       })
       .addCase(loginUserAsync.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(loginUserAsync.fulfilled, (state, action) => {
         (state.status = "idle"),
@@ -60,10 +61,11 @@ export const authSlice = createSlice({
       })
       .addCase(addUserAddressAsync.pending, (state, action) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(addUserAddressAsync.fulfilled, (state, action) => {
         // console.log(action.payload)
-        state.status = "success";
+        state.status = "idle";
         state.user = action.payload;
       });
   },
@@ -73,6 +75,8 @@ export const authSlice = createSlice({
 export const selectLoginInUserDetail = (state) => state.auth.user;
 export const selecterror = (state) => state.auth.error;
 export const selectAuthState = (state) => state.auth.status;
+
+
 
 export const selectError = (state) => state.auth.error;
 // export const selectStatus = (state)=>state.auth.status
