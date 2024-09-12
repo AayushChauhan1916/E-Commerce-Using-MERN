@@ -27,6 +27,7 @@ router.post(
           amount: req.body.totalAmount * 100,
           currency: "INR",
           receipt: req.body.user,
+          payment_capture: 1,
         });
         if (!razorpayResponse) {
           res.status(500).send("error");
