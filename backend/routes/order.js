@@ -116,14 +116,19 @@ router.post("/fetch", async (req, res) => {
 router.post(
   "/orderpayment/validate",
   wrapAsync(async (req, res) => {
-    // console.log(req.body);
-    // console.log(req.body.currentOrder);
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-      req.body;
-    const sha = crypto.createHmac("sha256", process.env.KEY_SECRET);
-    sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
-    const digest = sha.digest("hex");
-    if (digest !== razorpay_signature) {
+    const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+    req.body;
+  
+
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+  const expectedSignature = crypto
+    .createHmac("sha256", "vP83yht91wf42bY4zfEy4ItB")
+    .update(body.toString())
+    .digest("hex");
+
+  const isAuthentic = expectedSignature === razorpay_signature;
+    if (!isAuthentic) {
       res
         .status(400)
         .json({
@@ -152,7 +157,7 @@ router.post(
           return res.status(500).json({
             success: false,
             message:
-              "Product Quantity is greater than the stock availalbe, Sorry Can't place your order deducted amount refunded Automatically",
+              "Product Quantity is greater than the stock availalbe, Sorry Can't place your order deducted amount refunded in 2-3 working days",
           });
         }
 
