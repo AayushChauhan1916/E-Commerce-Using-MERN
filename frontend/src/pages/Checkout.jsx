@@ -115,6 +115,9 @@ const Checkout = () => {
             paymentmethod: paymentmethod,
           })
         );
+        if(!razorpayOrder.id){
+          return;
+        }
         var options = {
           key: "rzp_test_WjYkuxQq5QqRtK",
           amount: totalPrice * 100, // Enter the Key ID generated from the Dashboard // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise

@@ -196,34 +196,39 @@ router.post(
 router.post(
   "/prepaidorder",
   wrapAsync(async (req, res) => {
-    let razorpayResponse;
     try {
+      const { totalAmount, user } = req.body;
+
+      // Check if totalAmount and user are provided in the request
+      if (!totalAmount || !user) {
+        return res.status(400).json({ success: false, message: "Invalid request data." });
+      }
+
       const razorpay = new Razorpay({
         key_id: process.env.KEY_ID,
         key_secret: process.env.KEY_SECRET,
       });
 
-      // const options = req.body;
-      razorpayResponse = await razorpay.orders.create({
-        amount: req.body.totalAmount * 100,
+      const razorpayResponse = await razorpay.orders.create({
+        amount: totalAmount * 100, // Converting to paisa
         currency: "INR",
-        receipt: req.body.user,
+        receipt: user, // Ideally this should be a unique order identifier
         payment_capture: 1,
       });
+
       if (!razorpayResponse) {
-        return res.status(500).send("error");
-      } else {
-        res.status(200).json({
-          success: true,
-          razorpayResponse: razorpayResponse,
-          currentOrder: req.body,
-        });
+        return res.status(500).json({ success: false, message: "Failed to create Razorpay order." });
       }
+
+      res.status(200).json({
+        success: true,
+        razorpayResponse,
+        currentOrder: req.body,
+      });
+
     } catch (error) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ success: false, message: "Internal server error." });
+      console.error("Error creating Razorpay order:", error);
+      res.status(500).json({ success: false, message: "Internal server error." });
     }
   })
 );
